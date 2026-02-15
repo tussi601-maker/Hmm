@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRICKCAST</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+body{
+    height:100vh;
+    background: radial-gradient(circle at top,#0f3d2e,#071a12);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+/* background animation */
+body::before{
+    content:'';
+    position:absolute;
+    width:200%;
+    height:200%;
+    background: radial-gradient(circle,rgba(0,255,150,0.1),transparent);
+    animation: move 8s linear infinite;
+}
+@keyframes move{
+    0%{transform:translate(0,0);}
+    50%{transform:translate(-10%,-10%);}
+    100%{transform:translate(0,0);}
+}
+.card{
+    width:90%;
+    max-width:420px;
+    padding:30px;
+    border-radius:20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.05);
+    box-shadow:0 0 30px rgba(0,255,150,0.2);
+    text-align:center;
+    position:relative;
+    z-index:2;
+}
+.logo{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+.live-badge{
+    display:inline-block;
+    background:red;
+    padding:4px 10px;
+    border-radius:6px;
+    font-size:12px;
+    margin-top:5px;
+    animation: blink 1s infinite;
+}
+@keyframes blink{
+    50%{opacity:0.3;}
+}
+.timer{
+    margin:15px 0 25px;
+    font-size:16px;
+    opacity:0.9;
+}
+.link-btn{
+    display:block;
+    margin:12px 0;
+    padding:14px;
+    text-decoration:none;
+    color:white;
+    font-weight:600;
+    border-radius:12px;
+    background: linear-gradient(45deg,#16a34a,#0f766e);
+    transition:0.3s;
+}
+.link-btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 20px #16a34a;
+}
+.footer{
+    margin-top:25px;
+    font-size:12px;
+    opacity:0.6;
+}
+</style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">🏏 CRICKCAST</div>
+    <div class="live-badge">LIVE</div>
+    <div class="timer" id="countdown">
+        Match starting soon...
+    </div>
+    <!-- LINKS (YAHI CHANGE KARNA HAI) -->
+    <a href="https://crickcast-ss2h.pages.dev/" class="link-btn">LIVE MATCH LINK</a>
+    <a href="https://crickcast-ss2h.pages.dev/" class="link-btn">LIVE MATCH LINK</a>
+    <a href="https://crickcast-ss2h.pages.dev/" class="link-btn">LIVE MATCH LINK</a>
+    <a href="https://crickcast-ss2h.pages.dev/" class="link-btn">TELEGRAM CHANNEL</a>
+    <div class="footer">© 2026 CRICKCAST</div>
+</div>
+<script>
+// MATCH START TIME (CHANGE KARNA)
+var matchTime = new Date("Feb 20, 2026 19:30:00").getTime();
+var x = setInterval(function() {
+  var now = new Date().getTime();
+  var distance = matchTime - now;
+  var hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+  var minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+  var seconds = Math.floor((distance % (1000*60))/1000);
+  document.getElementById("countdown").innerHTML =
+  "Match starts in: " + hours + "h " + minutes + "m " + seconds + "s ";
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "Match is LIVE NOW 🔴";
+  }
+}, 1000);
+</script>
+</body>
+</html>
